@@ -1,0 +1,76 @@
+{
+  "manifest_version": 3,
+  "name": "PyDM Sniffer",
+  "version": "1.3",
+  "description": "Hands browser downloads to the PyDM desktop app and sends it the media/pictures your browser loads (127.0.0.1:8765).",
+  "permissions": [
+    "webRequest",
+    "storage",
+    "downloads",
+    "cookies",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "overlay.css"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://m.youtube.com/*"
+      ],
+      "js": [
+        "vmenu.js",
+        "youtube.js"
+      ],
+      "css": [
+        "video.css"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "vmenu.js",
+        "video.js"
+      ],
+      "css": [
+        "video.css"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "action": {
+    "default_title": "PyDM - click to turn media sniffing on/off, right-click for options",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

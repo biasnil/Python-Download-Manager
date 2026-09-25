@@ -1,0 +1,7 @@
+PyQt6
+httpx[http2]
+aiofiles
+platformdirs
+# optional
+aiohttp        # browser extension (sniffer, download catching)
+yt-dlp         # "Download this video" on YouTube and 1000+ sites
